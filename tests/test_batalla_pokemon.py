@@ -15,7 +15,7 @@ def test_ataque(monkeypatch):
     mudkip = Pokemon("Mudkip", 50, 30, 100)
     charmander = Pokemon("Charmander", 40, 20, 100)
 
-    monkeypatch.setattr(random, "randint", lambda a, b: 0)  # No variación de daño
+    monkeypatch.setattr(random, "randint", lambda a, b: 0)  # Sin variación de daño
 
     mudkip.atacar(charmander)
     assert charmander.vida == 70  # (50 ataque - 20 defensa = 30 daño)
@@ -25,10 +25,10 @@ def test_batalla(monkeypatch):
     mudkip = Pokemon("Mudkip", 50, 30, 100)
     charmander = Pokemon("Charmander", 40, 20, 100)
 
-    secuencia = [0, 0, 0, 0, 0, 0]  # Simula ataque constante sin variaciones
+    secuencia = [0] * 20  # Suficientes valores para evitar IndexError
 
     def mock_randint(a, b):
-        return secuencia.pop(0)
+        return secuencia.pop(0) if secuencia else 0  # Si se vacía, devuelve 0
 
     monkeypatch.setattr(random, "randint", mock_randint)
 

@@ -17,9 +17,10 @@ class Pokemon:
 def batalla(pokemon1, pokemon2):
     """Simula una batalla por turnos entre dos Pokémon."""
     while pokemon1.vida > 0 and pokemon2.vida > 0:
-        pokemon1.atacar(pokemon2)
+        print(pokemon1.atacar(pokemon2))
         if pokemon2.vida <= 0:
             return f"¡{pokemon1.nombre} gana la batalla!"
-        pokemon2.atacar(pokemon1)
+        
+        print(pokemon2.atacar(pokemon1))
         if pokemon1.vida <= 0:
             return f"¡{pokemon2.nombre} gana la batalla!"
