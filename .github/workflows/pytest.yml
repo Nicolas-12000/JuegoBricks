@@ -1,5 +1,5 @@
-name: CI - Ejecución de Pruebas Unitarias con Pytest
-run-name: Ejecutar pruebas unitarias con Pytest en Python (🧪)
+name: CI - Pruebas Unitarias con Pytest
+run-name: Ejecutando pruebas unitarias en Python (🧪)
 
 on:
   push:
@@ -14,20 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Clonar el repositorio y obtener el código fuente
+      - name: 📥 Clonar el repositorio
         uses: actions/checkout@v3
 
-      - name: 🔧 Configurar entorno de Python 3.10
+      - name: 🔧 Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: 📦 Instalar dependencias del proyecto
+      - name: 📦 Instalar dependencias
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install pytest-html
+          pip install pytest pytest-html
 
+<<<<<<< HEAD
       - name: 📂 Asegurar que el directorio tests/ existe
         run: mkdir -p $GITHUB_WORKSPACE/tests/
 
@@ -60,14 +61,22 @@ jobs:
           echo "✅ Pruebas ejecutadas, verificando existencia de report.html"
           ls -lah
           exit $EXIT_CODE  # Devuelve el código de error original de pytest
+=======
+      - name: 🧪 Ejecutar pruebas con Pytest
+        run: |
+          pytest -v --disable-warnings --html=report.html
+>>>>>>> 749eff5 (Añadiendo pruebas unitarias y GitHub Actions)
 
-      - name: 📤 Subir reporte de pruebas en HTML a GitHub Actions
+      - name: 📤 Subir reporte de pruebas
         uses: actions/upload-artifact@v4
         with:
-          name: pytest-report-html
+          name: pytest-report
           path: report.html
+<<<<<<< HEAD
 
       - name: 🔄 Actualizar Codespaces después del push
         run: |
           git remote set-url origin https://github.com/${{ github.repository }}.git
           git pull origin main --rebase
+=======
+>>>>>>> 749eff5 (Añadiendo pruebas unitarias y GitHub Actions)
