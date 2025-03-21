@@ -1,5 +1,7 @@
 # 🧪 Pruebas Unitarias con Pytest en JuegoBricks
 
+Nombre Estudiante: Nicolás Alejandro García Pasmiño
+
 ## 📦 Instalación de Dependencias
 
 Ejecuta los siguientes comandos para instalar las herramientas necesarias:
